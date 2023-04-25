@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>register page</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="theme-color" content="#fafafa">
+
+  <!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+<![endif]-->
+  
+</head>
+<body>
+  <div class="form">
+    <div class="container clearfix">
+      <div class="row">
+        <div class="col-lg-7 float-left">
+          <div class="logo">
+            <h3 class="mb-5">Create your <b>Flipkart</b> Account</h3>
+          </div>
+          <% if(status && message ){ %>
+            <h3 class="text text-danger" ><%= message; %></h3> 
+            <% } %>
+          <form action="/register" method="post">
+           <div class="form-satar">
+             <input class="form-control w-48 float-left" type="text" name="firstName" placeholder="First name">
+             <input class="form-control w-48 float-right " type="text" name="lastName" placeholder="Last name">
+              <input class="form-control w-100" type="text" name="email" placeholder="Username" value="@gmail.com" >
+              <input class="form-control w-48 float-left" type="number" name="contact" placeholder="Contact">
+             <input class="form-control w-48 float-right " type="password" name="password" placeholder="Password">
+             <input class="form-control w-60 float-left" type="address" name="address" placeholder="address">
+             <input class="form-control w-48 float-left " type="text" name="city" placeholder="type city">
+             <input class="form-control w-48 float-right " type="number" name="pincode" placeholder="pincode">
+             
+               <button class="s-btn text-right"><a href="/login">Login</a></button>
+              <button class="n-btn" type="submit">submit</button>
+           </div>
+          </form>
+        </div>
+        <div class="col-lg-5 float-right">
+          <div class="left-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWhCs4f2YW-VqYSm1zPkcdznlX95UOuiO8tw&usqp=CAU" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
+<style>
+  .form{
+    width: 760px;
+    margin:100px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+}
+.logo{
+    margin-top: 20px;
+}
+.logo img{
+    width: 80px;
+}
+.logo h3{
+    font-family: 'Google Sans',arial,sans-serif;
+    color: #202124;
+    font-size: 24px;
+    padding-top :20px ;
+    font-weight: 400;
+    margin-bottom: 35px;
+}
+input.form-control.w-48{
+    width: 48%;
+}
+input.form-control{
+    margin-bottom: 25px;
+    font-size: 15px;
+    color: gray;
+}
+.form-satar p{
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 8px;
+    font-weight: normal;
+    color: #202124;
+}
+.form-satar a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 25px;
+    display: inline-block;
+
+}
+
+.span{
+    color: rgba(0,0,0,.6);
+    font-size: 20px;
+}
+.form-satar .so{
+    font-size:13px;
+    color: #202124;
+    margin-top: -10px;
+}
+.form-satar .s-btn{
+    float: right;
+    border: none;
+    background-color: #fff;
+    color: #1a73e8;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 40px;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+.form-satar .s-btn:hover{
+    background-color: rgba(223, 249, 251,.4);
+}
+.form-satar .n-btn{
+  margin-left: 10em;
+    background-color: #1a73e8;
+    border: none;
+    padding: 8px 35px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+.form-satar .n-btn:hover{
+  background-color: #0551b4;  
+}
+.left-logo{
+    margin-top: 115px;
+}
+.left-logo img{
+    width: 100%;
+}
+.left-logo p{
+    text-align: center;
+    font-size: 17px;
+    color: #202124;
+    line-height: 1.5em;
+    font-weight: 400;
+}
+</style>

@@ -1,0 +1,111 @@
+<div>
+    <h1 class="h3 text-gray-800" style="margin-top: 90px; text-align: center;">All Category</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                </div>
+                <div class="col-6 text text-right">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#createCategoryModal">Add New</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-light table-striped" id="dataTable" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="text-primary">S.NO</th>
+                            <th class="text-primary">Title</th>
+                            <th class="text-primary">Description</th>
+                            <th class="text-primary">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < categories.length; i++) { let category = categories[i]; %>
+                            <tr>
+                                <td>
+                                    <%= i+1; %>
+                                </td>
+                                <td>
+                                    <%= category.title; %>
+                                </td>
+                                <td>
+                                    <%= category.description; %>
+                                </td>
+                                <td>
+                                    <a href="/admin/edit-category?categoryId=<%= categories[i].id %>"
+                                        class="btn btn-primary">Edit</a>
+                                    <a href="/admin/delete-cetegory?categoryId=<%= categories[i].id; %>"
+                                        onclick="return confirm('Are you sure to delete this category ?')"
+                                        class="btn btn-danger">delete</a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <form action="/admin/category" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Title</label>
+                                <input type="text" name="title" id="title" class="form-control" />
+
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label>Description</label>
+                                <textarea name="description" class="form-control"></textarea>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label>category</label>
+                                <select name="categoryId" class="form-control">
+                                    <option value="0">select product category</option>
+                                    <% for(let i=0; i < categories.length; i++) { let category = categories[i]; %>
+                                        <option value="<%= category.id; %>">
+                                            <%= category.title; %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                <% if(status && message) { %>
+                                    <div class="col-12 mt-5">
+                                        <small class="text text-danger">
+                                            <%= message; %>
+                                        </small>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="modal-footer mt-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<% if(status && message) { %>
+    <script>
+        $(document).ready(function(){
+            $('#createCategoryModal').modal('show')
+        });
+    </script>
+    <%} %>

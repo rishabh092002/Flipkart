@@ -1,0 +1,147 @@
+<div>
+    <h1 class="h3 text-gray-800" style="margin-top: 90px; text-align: center;">All product</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+                </div>
+                <div class="col-6 text text-right">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#createProductModal">Add New</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-light table-striped" id="dataTable" width="100%">
+                        <thead> 
+                            <tr>
+                                <th class="text-primary">S.no</th>
+                                <th class="text-primary">image</th>
+                                <th class="text-primary">title</th>
+                                <th class="text-primary">price</th>
+                                <th class="text-primary">Quantity</th>
+                                <th class="text-primary">Category</th>
+                                <th class="text-primary">description</th>
+                                <th class="text-primary">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0; i < product.length; i++) { let pro=product[i];  
+                                const allImages = (pro.image)?pro.image.split(","): null
+                                let productSingleimg = (allImages)?allImages[0]:''; 3 %>
+    
+                                <tr>
+                                    <td>
+                                        <%= i + 1; %>
+                                    </td>
+                                        <td>
+                                            <img src="/product_Images/<%= productSingleimg; %>"
+                                            alt="internal server error" height="100" width="100">
+                                        </td>
+                                    <td>
+                                        <%= pro.title; %>
+                                    </td>
+                                    <td>
+                                        <%= pro.price; %>
+                                    </td>
+                                    <td>
+                                        <%= pro.quantity; %>
+                                    </td>
+                                    <td>
+                                        <%= pro.category; %>
+                                    </td>
+                                    <td>
+                                        <%= pro.description; %>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/edit-product?productId=<%= product[i].id; %>" class="btn btn-primary">Edit</a>
+                                        <a href="/admin/delete-product?productId=<%= product[i].id; %>" onclick="return confirm('Are you sure to delete this data ?');" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="createProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/admin/product" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Title</label>
+                            <input type="text" name="title" id="title" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>Price</label>
+                            <input type="number"
+                             name="price" id="price" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>Quantity</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control" />
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control"></textarea>
+                        </div>  
+                        <div class="col-12 mt-2">
+                            <label>category</label>
+                            <select name="categoryId" class="form-control">
+                                <option value="0">select product category</option>
+                                <% for(let i=0; i < categories.length; i++) { let category=categories[i]; %>
+                                    <option value="<%= category.id; %>">
+                                        <%= category.title; %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label>Images</label>
+                            <input type="file" name="productImages" class="form-control" multiple="multiple" />
+                        </div>
+                        <% if(status && message) { %>
+                            <div class="col-12 mt-2">
+                                <small class="text text-danger">
+                                    <%= message; %>
+                                </small>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<% if(status && message) { %>
+    <script>
+        $(document).ready(function(){
+            $('#createProductModal').modal('show');
+        });
+    </script>
+    <% } %>
+
+
+
+
+
+
+
+    

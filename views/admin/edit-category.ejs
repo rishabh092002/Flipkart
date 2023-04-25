@@ -1,0 +1,44 @@
+<div class="container offset-2" style="margin-top: 8em;">
+    <div class="row">
+        <div class="col-8">
+            <form action="/admin/update-category?categoryId=<%= category.id; %>" method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Edit Category</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Title</label>
+                                <input type="text" name="title" id="title" class="form-control"
+                                    value="<%= category.title; %>" />
+                            </div>
+                            <div class="col-12">
+                                <label>Description</label>
+                                <textarea name="description"
+                                    class="form-control"><%= category.description; %></textarea>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label>category</label>
+                                <select name="categoryId" class="form-control">
+                                    <option value="0">select product category</option>
+                                    <% for(let i=0; i < allCategories.length; i++) { %>
+                                        <option <%=(allCategories[i].id && allCategories[i].id==category.category_id)? "selected='selected'" : '' ; %> value="<%= allCategories[i].id; %>"><%=allCategories[i].title; %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <% if(status && message){ %> 
+                                <div class="col-12 text text-danger mt-5 ">
+                                    <%= message; %>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="card-footer text text-center mt-5">
+                        <button type="submit" class="btn btn-outline-success">update</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
